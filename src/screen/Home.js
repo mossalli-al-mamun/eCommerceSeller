@@ -1,6 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions
+} from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import { PieChart, LineChart } from "react-native-chart-kit";
+import Swiper from "react-native-swiper";
 
 import HeaderLeft from "../header/HeaderLeft";
 import HeaderRight from "../header/HeaderRight";
@@ -9,6 +17,52 @@ import HeaderCenter from "../header/HeaderCenter";
 import { Header } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 
+var { width } = Dimensions.get("window");
+
+const data = [
+  {
+    name: "Shirt",
+    quantity: 21,
+    color: "rgba(131, 167, 234, 1)",
+    legendFontColor: "#7F7F7F",
+    legendFontSize: 15
+  },
+  {
+    name: "Pant",
+    quantity: 12,
+    color: "#f9a825",
+    legendFontColor: "#7F7F7F",
+    legendFontSize: 15
+  },
+  {
+    name: "3 Pcs",
+    quantity: 15,
+    color: "red",
+    legendFontColor: "#7F7F7F",
+    legendFontSize: 15
+  },
+  {
+    name: "Shari",
+    quantity: 6,
+    color: "#455a64",
+    legendFontColor: "#7F7F7F",
+    legendFontSize: 15
+  },
+  {
+    name: "Watch",
+    quantity: 13,
+    color: "rgb(0, 0, 255)",
+    legendFontColor: "#7F7F7F",
+    legendFontSize: 15
+  }
+];
+
+const chartConfig = {
+  backgroundGradientFrom: "#1E2923",
+  backgroundGradientTo: "#08130D",
+  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`
+};
+
 export default class App extends React.Component {
   static navigationOptions = {
     header: null
@@ -16,35 +70,71 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          <Header containerStyle={{ backgroundColor: "#255E76", height: 72 }}>
-            <HeaderLeft />
-            <HeaderCenter />
-            <HeaderRight />
-          </Header>
-
+      <View style={styles.container}>
+        <Header
+          // statusBarProps={{ barStyle: "dark-content", color: "red" }}
+          placement="center"
+          containerStyle={{
+            backgroundColor: "#255E76",
+            height: 45,
+            paddingTop: 0
+          }}
+        >
+          <HeaderLeft />
+          <HeaderCenter />
+          <HeaderRight />
+        </Header>
+        <ScrollView>
           <View style={styles.title}>
             <Text style={styles.titleFont}>Towday's Report</Text>
           </View>
 
           <View style={styles.reportView}>
-            <ScrollView horizontal={true}>
+            <Swiper style={styles.wrapper} showsButtons={true}>
               <View style={styles.scrl}>
                 <Text style={styles.scroolText}>Pending Orders (0)</Text>
+                <PieChart
+                  data={data}
+                  width={width}
+                  height={140}
+                  chartConfig={chartConfig}
+                  accessor="quantity"
+                  backgroundColor="transparent"
+                  paddingLeft="15"
+                />
               </View>
               <View style={styles.scrl}>
                 <Text style={styles.scroolText}>Total Orders (0)</Text>
+
+                <PieChart
+                  data={data}
+                  width={width}
+                  height={140}
+                  chartConfig={chartConfig}
+                  accessor="quantity"
+                  backgroundColor="transparent"
+                  paddingLeft="15"
+                />
               </View>
               <View style={styles.scrl}>
                 <Text style={styles.scroolText}>Delivered (0)</Text>
+                <PieChart
+                  data={data}
+                  width={width}
+                  height={140}
+                  chartConfig={chartConfig}
+                  accessor="quantity"
+                  backgroundColor="transparent"
+                  paddingLeft="15"
+                />
               </View>
-            </ScrollView>
+            </Swiper>
           </View>
 
           <View style={styles.title}>
             <Text style={styles.titleFont}>Store Management</Text>
           </View>
+
           <View>
             <TouchableOpacity style={styles.addProducts}>
               <Text style={styles.addProductsText}>Add Products </Text>
@@ -99,8 +189,8 @@ export default class App extends React.Component {
               </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -124,16 +214,19 @@ const styles = StyleSheet.create({
     color: "#212121"
   },
   scrl: {
-    paddingLeft: 7,
-    paddingRight: 7,
-    paddingTop: 5
+    // paddingLeft: 7,
+    // paddingRight: 7,
+    paddingTop: 5,
+    alignItems: "center",
+    justifyContent: "center"
+    // height: 220
   },
   scroolText: {
     color: "#ff6f00",
     fontSize: 16
   },
   reportView: {
-    height: 110,
+    height: 170,
     fontSize: 17
   },
   addProducts: {
@@ -213,5 +306,7 @@ const styles = StyleSheet.create({
     // borderColor: "#255E76",
     justifyContent: "center",
     alignItems: "center"
-  }
+  },
+
+  wrapper: {}
 });

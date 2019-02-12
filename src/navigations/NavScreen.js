@@ -1,7 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Login from "../users/Login";
-// import Home from "../screen/Home";
+import Home from "../screen/Home";
+
+// import Settings from "../screen/Settings";
 import TabNavScreen from "../navigations/TabNavScreen";
 
 import { createStackNavigator, createAppContainer } from "react-navigation";
