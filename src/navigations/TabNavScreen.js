@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import {
   createStackNavigator,
   createAppContainer,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createMaterialTopTabNavigator
 } from "react-navigation";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
@@ -11,6 +12,12 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Home from "../screen/Home";
 import Settings from "../screen/Settings";
 import Account from "../screen/Account";
+import AddProducts from "../screen/subScreen/addProducts/AddProducts";
+import MonthlySales from "../screen/subScreen/salesReports/MonthlySales";
+import YearlySales from "../screen/subScreen/salesReports/YearlySales";
+import AllProducts from "../screen/subScreen/productsScreens/AllProducts";
+import NewProducts from "../screen/subScreen/productsScreens/NewProducts";
+import BestSelling from "../screen/subScreen/productsScreens/BestSelling";
 
 //Top Tab
 // import Men from "../screens/topTab/Men";
@@ -20,9 +27,72 @@ import Account from "../screen/Account";
 // import Login from "../users/Login";
 // import SignUp from "../users/SignUp";
 
+const productsTab = createMaterialTopTabNavigator(
+  {
+    AllProducts: AllProducts,
+    BestSelling: BestSelling,
+    NewProduct: NewProducts
+  },
+  {
+    // defaultNavigationOptions: ({ navigation }) => ({
+    //   tabBarIcon: ({ focused, tintColor }) =>
+    //     getTabBarIcon(navigation, focused, tintColor),
+    // }),
+    tabBarOptions: {
+      // activeTintColor: "#00b8d4",
+      // inactiveTintColor: "gray",
+      style: {
+        height: 45,
+        // paddingVertical: 5
+        //paddingTop: 10,
+        backgroundColor: "#255E76"
+      },
+      indicatorStyle: {
+        color: "black"
+      },
+      scrollEnabled: true
+      // labelStyle: {
+      //   // fontSize: 11,
+      //   lineHeight: 12
+      // }
+    }
+  }
+);
+
 const DashboardNavigator = createStackNavigator({
   Home: {
     screen: Home,
+    navigationOptions: {
+      header: null
+    }
+  },
+  AddProducts: {
+    screen: AddProducts,
+    navigationOptions: {
+      header: null
+    }
+  },
+  MonthlySales: {
+    screen: MonthlySales,
+    navigationOptions: {
+      // header: null
+      //   marginTop: 0,
+      // headerStyle: { height: 30, paddingVertical: 20 }
+      // headerLeft: (
+      //   <TouchableOpacity onPress={() => navigation.goBack()}>
+      //     <MaterialIcons name="chevron-left" size={30} color={"black"} />
+      //   </TouchableOpacity>
+      // )
+    }
+  },
+  YearlySales: {
+    screen: YearlySales,
+    navigationOptions: {
+      headerStyle: { paddingVertical: 5 }
+    }
+  },
+  Products: {
+    screen: productsTab,
     navigationOptions: {
       header: null
     }

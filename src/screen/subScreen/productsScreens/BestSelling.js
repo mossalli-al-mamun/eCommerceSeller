@@ -1,12 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Swiper from "react-native-swiper";
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Notification</Text>
+        <Text>Best selling!</Text>
       </View>
     );
   }

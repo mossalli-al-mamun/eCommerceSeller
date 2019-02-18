@@ -92,7 +92,7 @@ export default class App extends React.Component {
           <View style={styles.reportView}>
             <Swiper style={styles.wrapper} showsButtons={true}>
               <View style={styles.scrl}>
-                <Text style={styles.scroolText}>Pending Orders (0)</Text>
+                <Text style={styles.scroolText}>Pending Orders (10)</Text>
                 <PieChart
                   data={data}
                   width={width}
@@ -104,7 +104,7 @@ export default class App extends React.Component {
                 />
               </View>
               <View style={styles.scrl}>
-                <Text style={styles.scroolText}>Total Orders (0)</Text>
+                <Text style={styles.scroolText}>Total Orders (45)</Text>
 
                 <PieChart
                   data={data}
@@ -117,7 +117,7 @@ export default class App extends React.Component {
                 />
               </View>
               <View style={styles.scrl}>
-                <Text style={styles.scroolText}>Delivered (0)</Text>
+                <Text style={styles.scroolText}>Delivered (25)</Text>
                 <PieChart
                   data={data}
                   width={width}
@@ -136,48 +136,52 @@ export default class App extends React.Component {
           </View>
 
           <View>
-            <TouchableOpacity style={styles.addProducts}>
+            <TouchableOpacity
+              style={styles.addProducts}
+              onPress={() => this.props.navigation.navigate("AddProducts")}
+            >
               <Text style={styles.addProductsText}>Add Products </Text>
               <Entypo name={"circle-with-plus"} size={18} color="#ff6f00" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.products}>
+            <TouchableOpacity
+              style={styles.products}
+              onPress={() => this.props.navigation.navigate("Products")}
+            >
               <Text style={styles.productsText}>Products</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.manageOrder}>
               <Text style={styles.productsText}>Manage Order</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.title}>
+            <Text style={styles.titleFont}>Listed Products on Facebook</Text>
+          </View>
+
+          <View style={styles.productsOnFb} />
 
           <View style={styles.title}>
-            <Text style={styles.titleFont}>Campaign</Text>
+            <Text style={styles.titleFont}>Boosted Post</Text>
+          </View>
+
+          <View style={styles.productsOnFb} />
+
+          <View style={styles.title}>
+            <Text style={styles.titleFont}>Finacial Reports</Text>
           </View>
           <View>
-            <View style={styles.fbPostView}>
-              <TouchableOpacity style={styles.postButton}>
-                <Text style={{ fontSize: 16, color: "#fff" }}>
-                  Post On Facebook
-                </Text>
-              </TouchableOpacity>
-            </View>
-
-            <View
-              style={{
-                // padding: 5,
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <TouchableOpacity style={styles.boostButton}>
-                <Text
-                  style={{ fontSize: 17, color: "#fff", fontWeight: "bold" }}
-                >
-                  Boost Post
-                </Text>
-              </TouchableOpacity>
-            </View>
             <View style={styles.todaysPostView}>
-              <Text style={styles.productsText}>Todays Post (0)</Text>
-              <Text style={styles.productsText}>Boosting Now (0)</Text>
+              <Text
+                style={styles.productsText}
+                onPress={() => this.props.navigation.navigate("MonthlySales")}
+              >
+                Monthly Report
+              </Text>
+              <Text
+                style={styles.productsText}
+                onPress={() => this.props.navigation.navigate("YearlySales")}
+              >
+                Yearly Report
+              </Text>
             </View>
             <View style={styles.todaysPostView}>
               <View style={styles.boostBalance}>
@@ -256,7 +260,11 @@ const styles = StyleSheet.create({
   },
   productsText: {
     color: "#616161",
-    fontSize: 16
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+  productsOnFb: {
+    height: 100
   },
   fbPostView: {
     padding: 10,
@@ -266,7 +274,7 @@ const styles = StyleSheet.create({
   postButton: {
     backgroundColor: "#9e9e9e",
     height: 30,
-    width: 160,
+    // width: 200,
     borderWidth: 0.5,
     borderRadius: 4,
     borderColor: "#255E76",
