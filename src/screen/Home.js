@@ -4,18 +4,18 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { PieChart, LineChart } from "react-native-chart-kit";
 import Swiper from "react-native-swiper";
 
-import HeaderLeft from "../header/HeaderLeft";
-import HeaderRight from "../header/HeaderRight";
-import HeaderCenter from "../header/HeaderCenter";
+import HeaderLeft from "../header/home/HeaderLeft";
+import HeaderRight from "../header/home/HeaderRight";
+import HeaderCenter from "../header/home/HeaderCenter";
 
 import { Header } from "react-native-elements";
-import { ScrollView } from "react-native-gesture-handler";
 
 var { width } = Dimensions.get("window");
 
@@ -149,7 +149,10 @@ export default class App extends React.Component {
             >
               <Text style={styles.productsText}>Products</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.manageOrder}>
+            <TouchableOpacity
+              style={styles.manageOrder}
+              onPress={() => this.props.navigation.navigate("PendingOrders")}
+            >
               <Text style={styles.productsText}>Manage Order</Text>
             </TouchableOpacity>
           </View>

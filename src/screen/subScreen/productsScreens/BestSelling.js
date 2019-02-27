@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default class App extends React.Component {
+class BestSelling extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -10,6 +10,8 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default BestSelling;
 
 const styles = StyleSheet.create({
   container: {

@@ -8,6 +8,14 @@ import {
 } from "react-navigation";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
+//Redux
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
+//Reducer
+
+import { store, persistor } from "../redux/store/index";
+
 //Bottom Tab
 import Home from "../screen/Home";
 import Settings from "../screen/Settings";
@@ -18,6 +26,9 @@ import YearlySales from "../screen/subScreen/salesReports/YearlySales";
 import AllProducts from "../screen/subScreen/productsScreens/AllProducts";
 import NewProducts from "../screen/subScreen/productsScreens/NewProducts";
 import BestSelling from "../screen/subScreen/productsScreens/BestSelling";
+import PendingOrders from "../screen/subScreen/manageOrder/PendingOrders";
+import OrderDetails from "../screen/subScreen/manageOrder/OrderDetails";
+import ProductDetails from "../screen/subScreen/productDetails/ProductDetails";
 
 //Top Tab
 // import Men from "../screens/topTab/Men";
@@ -93,6 +104,25 @@ const DashboardNavigator = createStackNavigator({
   },
   Products: {
     screen: productsTab,
+    navigationOptions: {
+      header: null
+    }
+  },
+
+  PendingOrders: {
+    screen: PendingOrders,
+    navigationOptions: {
+      header: null
+    }
+  },
+  OrderDetails: {
+    screen: OrderDetails,
+    navigationOptions: {
+      header: null
+    }
+  },
+  ProductDetails: {
+    screen: ProductDetails,
     navigationOptions: {
       header: null
     }
@@ -180,13 +210,18 @@ class NavScreen extends React.Component {
   };
 
   render() {
+    console.log("Hello");
     return (
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AppContainerBottom />
+        </PersistGate>
+      </Provider>
       // <Provider store={store}>
       //   <PersistGate loading={null} persistor={persistor}>
       //     <AppContainerBottom />
       //   </PersistGate>
       // </Provider>
-      <AppContainerBottom />
     );
   }
 }

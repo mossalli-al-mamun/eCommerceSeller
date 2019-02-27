@@ -5,7 +5,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Pending Orders!</Text>
+        <Text style={styles.text}>ADD PRODUCTS</Text>
       </View>
     );
   }
@@ -14,8 +14,16 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    flexDirection: "row",
+    // backgroundColor: '#fff',
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: 200
+  },
+
+  text: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold"
   }
 });
